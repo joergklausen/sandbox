@@ -55,6 +55,7 @@ df1 = pl.read_csv(io.StringIO(res.text), null_values='None', dtypes=[pl.Int64, p
 df1.drop_in_place("station")
 df1.columns = ["dtm", "o3_1"]
 df1 = df1.with_columns(pl.col("dtm").str.strptime(pl.Datetime, format="%Y%m%d%H%M%S"))
+df1.write_csv("data/49i_jretrieved.csv")
 
 ### select valid data and plot ###
 # %%
