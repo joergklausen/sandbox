@@ -6,11 +6,12 @@ from module1.module1 import MOD1
 from module2.module2 import MOD2
 
 def main():
-    logger = logging.getLogger(__name__)
+    logger_main = __name__
+    logger = logging.getLogger(logger_main)
     logger.setLevel(logging.DEBUG)
 
     # create file handler which logs warning and above messages
-    fh = logging.FileHandler(f"{__name__}.log")
+    fh = logging.FileHandler(f"{logger_main}.log")
     fh.setLevel(logging.WARNING)
 
     # create console handler which logs even debugging information
@@ -18,7 +19,7 @@ def main():
     ch.setLevel(logging.DEBUG)
     
     # create formatter and add it to the handlers
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter('%(asctime)s: %(levelname)s from %(name)s: %(message)s')
     fh.setFormatter(formatter)
     ch.setFormatter(formatter)
     
@@ -27,7 +28,7 @@ def main():
     logger.addHandler(ch)
 
     logger.info('creating an instance of MOD1')
-    mod1 = MOD1()
+    mod1 = MOD1(logger_main)
     logger.info('created an instance of MOD1')
     logger.info('calling MOD1.hallo("John")')
     mod1.hallo("John")

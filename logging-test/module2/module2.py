@@ -2,7 +2,7 @@ import logging
 
 class MOD2:
     def __init__(self) -> None:
-        self.logger = logging.getLogger(__name__)
+        self.logger = logging.getLogger(f"__main__.{__name__}")
 
     def hallo(self, name):
         self.logger.info(f"Hallo, {name}")
